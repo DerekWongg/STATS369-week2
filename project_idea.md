@@ -1,14 +1,16 @@
 # STATS369-week2
 
 ## Idea of algorithm
+- 
 
 ## Roles:
-- Coding(1):
-- Script(1):
+- Coding & graphic(1):
+- Script for present(1):
 - Video processing(1):
 - Report(1):
 
 ## Method of delievery: 
-- getting togather and record the thing
-- each of us record our part and put togather
-- record our zoom meeting
+- getting togather and record the thing in person
+- each of us record our part and put togather (need one extra position for video editting)
+- record our zoom meeting at the same time
+
