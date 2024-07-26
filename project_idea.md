@@ -40,3 +40,10 @@
 ## Points to evaluate the project
 Clarity: Considering how the team presented their method in their video and report, did they present their idea and approach clearly?
 Communication: How do you rate the non-technical aspects of this team's communication, for example their description of the underlying principles, strengths and weaknesses of their method?
+
+
+## present
+- principle
+- algorithm
+- code
+- graph
