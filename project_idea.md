@@ -10,6 +10,11 @@
       - consider both overall and self performance, getting rewarded or penalised for 5s and 1s
     - cons:
       - will be benificial for students who rate each other 5/5
+    - Scenario 2:  Group Score: 70%; Individual teammate appraisal scores: 3, 3, 3, 3, 3 with rank of 10/23 in class
+        - mark for each person will be 70 * 0.6 + 10 * 0 = 42
+    - Scenario 2:  Group Score: 70%; Individual teammate appraisal scores: 5, 5, 5, 5, 5. with rank of 10/23 in class
+        - mark for each person will be 70 * 0.6 + 10 * 1.4 = 84
+    
 
 ## Roles:
 - Coding & graphic(1):
