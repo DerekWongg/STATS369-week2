@@ -51,7 +51,12 @@ Communication: How do you rate the non-technical aspects of this team's communic
 
 ## Timeline
 Algorithm number settled: Sat noon
+
 Coding part done: Sat Midnight
+
 Report: Sun midnight
+
 Script: Sun midnight
+
 Video: Mon midnight
+
