@@ -42,8 +42,16 @@ Clarity: Considering how the team presented their method in their video and repo
 Communication: How do you rate the non-technical aspects of this team's communication, for example their description of the underlying principles, strengths and weaknesses of their method?
 
 
-## present
+## Present
 - principle
 - algorithm
 - code
 - graph
+
+
+## Timeline
+Algorithm number settled: Sat noon
+Coding part done: Sat Midnight
+Report: Sun midnight
+Script: Sun midnight
+Video: Mon midnight
