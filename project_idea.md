@@ -1,7 +1,15 @@
 # STATS369-week2
 
 ## Idea of algorithm
-- 
+1. Two part of scoring: project score(60%) + adjustment score(40%):
+    - project score: score * 0.6
+    - adjustment score: ranking of project in class * adjusment factor
+      - ranking of project: ranking / number of projects
+      - adjustment factor: -100% for 1, -20% for 2, 0% for 3, 20% for 4, 40% for 5
+    - pros:
+      - consider both overall and self performance, getting rewarded or penalised for 5s and 1s
+    - cons:
+      - will be benificial for students who rate each other 5/5
 
 ## Roles:
 - Coding & graphic(1):
