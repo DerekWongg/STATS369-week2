@@ -14,7 +14,7 @@
 ## Roles:
 - Coding & graphic(1):
 - Script for present(1):
-- Video processing(1):
+- Video processing & task submission(1):
 - Report(1):
 
 ## Method of delievery: 
