@@ -1,8 +1,29 @@
 library(tidyverse)
 
+# function of our algorithm
+calculate.grades <- function(group, individual, group_total) {
+  # Calculate the adjustment factor
+  adjustment_factor <- individual / group_total
+  
+  # Calculate the adjustment score
+  adjustment_score <- 5 * adjustment_factor * group
+  
+  # Calculate the final score
+  final_score <- 0.5 * group + 0.5 * adjustment_score
+  
+  # Special calculation of students with score lower than 2
+  bad_student <- individual < 2
+  final_score[bad_student] <- group * (individual - 1) * 0.1
+  
+  # Change all score with over 100 to 100
+  final_score[final_score >= 100] <- 100
+  
+  return(final_score)
+}
+
 load("example-grading.data.RData")
 
- # Read in student data, create group total appraisal score variable and number of people in group variable
+# Read in student data, create group total appraisal score variable and number of people in group variable
 student.df <- student.df %>%
   group_by(group.name) %>%
   summarise(group_total = sum(individual.score), group_size = n()) %>%
@@ -20,18 +41,9 @@ student_data <- left_join(group.df, student.df, by = "group.name") %>%
   arrange(group) %>%
   select(group.name, group.score, individual.score, group_total, ranking, group_size)
 
-# Calculation of final mark 
+# Calculate final scores using mapply
 algorithm_data <- student_data %>%
-  mutate(adjustment_factor = individual.score / group_total,
-         adjustment_score = 5 * adjustment_factor * group.score,
-         final_score = 0.5 * group.score + 0.5 * adjustment_score)
-
-# Special calculation of students with score lower than 2
-bad_student <- algorithm_data$individual.score <= 2
-algorithm_data$final_score[bad_student] <- algorithm_data$group.score[bad_student] * (algorithm_data$individual.score[bad_student] - 1) * 0.1
-
-# Change all score with over 100 to 100
-algorithm_data$final_score[algorithm_data$final_score >= 100] <- 100
+  mutate(final_score = mapply(calculate.grades, group = group.score, individual = individual.score, group_total = group_total))
 
 # Density plot of score distribution
 ggplot() +
