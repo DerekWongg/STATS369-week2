@@ -28,23 +28,16 @@ load("example-grading.data.RData")
 # Read in student data, create group total appraisal score variable and number of people in group variable
 student.df <- student.df %>%
   group_by(group.name) %>%
-  summarise(group_total = sum(individual.score), group_size = n()) %>%
+  summarise(group_total = sum(individual.score)) %>%
   ungroup() %>%
   inner_join(student.df)
 
-# Read in group data, create group number variable, and group ranking variable
-group.df <- group.df %>%
-  mutate(group = row_number()) %>%
-  arrange(desc(group.score)) %>%
-  mutate(ranking = row_number())
-
 # Join student data and group data
 student_data <- left_join(group.df, student.df, by = "group.name") %>%
-  arrange(group) %>%
-  select(group.name, group.score, individual.score, group_total, ranking, group_size)
+  select(group.name, group.score, individual.score)
 
 # Calculate final scores using mapply
-student_data <- student_data %>%
+algorithm_data <- student_data %>%
   group_by(group.name) %>%
   mutate(final_score = calculate.grades(first(group.score), individual.score)) %>%
   ungroup()
