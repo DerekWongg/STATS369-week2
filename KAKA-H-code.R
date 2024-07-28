@@ -1,7 +1,9 @@
 library(tidyverse)
 
-# function of our algorithm
-calculate.grades <- function(group, individual, group_total) {
+# Define the function calculate.grades
+calculate.grades <- function(group, individual) {
+  group_total <- sum(individual)
+  
   # Calculate the adjustment factor
   adjustment_factor <- individual / group_total
   
@@ -13,9 +15,9 @@ calculate.grades <- function(group, individual, group_total) {
   
   # Special calculation of students with score lower than 2
   bad_student <- individual < 2
-  final_score[bad_student] <- group * (individual - 1) * 0.1
+  final_score[bad_student] <- group * (individual[bad_student] - 1) * 0.1
   
-  # Change all score with over 100 to 100
+  # Change all scores over 100 to 100
   final_score[final_score >= 100] <- 100
   
   return(final_score)
@@ -42,8 +44,10 @@ student_data <- left_join(group.df, student.df, by = "group.name") %>%
   select(group.name, group.score, individual.score, group_total, ranking, group_size)
 
 # Calculate final scores using mapply
-algorithm_data <- student_data %>%
-  mutate(final_score = mapply(calculate.grades, group = group.score, individual = individual.score, group_total = group_total))
+student_data <- student_data %>%
+  group_by(group.name) %>%
+  mutate(final_score = calculate.grades(first(group.score), individual.score)) %>%
+  ungroup()
 
 # Density plot of score distribution
 ggplot() +
