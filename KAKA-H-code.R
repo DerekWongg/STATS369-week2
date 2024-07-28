@@ -23,14 +23,11 @@ calculate.grades <- function(group, individual) {
   return(final_score)
 }
 
-load("example-grading.data.RData")
 
-# Read in student data, create group total appraisal score variable and number of people in group variable
-student.df <- student.df %>%
-  group_by(group.name) %>%
-  summarise(group_total = sum(individual.score)) %>%
-  ungroup() %>%
-  inner_join(student.df)
+# Demonstration of the calculate.grades function
+
+# Read in the data
+load("example-grading.data.RData")
 
 # Join student data and group data
 student_data <- left_join(group.df, student.df, by = "group.name") %>%
