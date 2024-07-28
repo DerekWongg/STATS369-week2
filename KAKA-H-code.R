@@ -20,12 +20,26 @@ calculate.grades <- function(group, individual) {
   # Change all scores over 100 to 100
   final_score[final_score >= 100] <- 100
   
+  final_score <- sapply(final_score, function(num) round(num, 1))
+  
   return(final_score)
 }
 
 
-# Demonstration of the calculate.grades function
+## Small examples to check validaty
+# Scenario 1: Group Score: 70%; Individual teammate appraisal scores: 3, 3, 3, 3, 3.
+calculate.grades(group = 70, individual = c(3, 3, 3, 3, 3))
+# Scenario 2: Group Score: 70%; Individual teammate appraisal scores: 5, 5, 5, 5, 5.
+calculate.grades(group = 70, individual = c(5, 5, 5, 5, 5))
+# Scenario 3: Group Score: 80%; Individual teammate appraisal scores: 3, 3, 3, 3, 3.
+calculate.grades(group = 80, individual = c(3, 3, 3, 3, 3))
+#Scenario 4: Group Score: 70%; Individual teammate appraisal scores: 1, 2, 3, 4, 5.
+calculate.grades(group = 70, individual = c(1, 2, 3, 4, 5))
+# Scenario 5: Group Score: 90%; Individual teammate appraisal scores: 1, 4, 4, 5.
+calculate.grades(group = 90, individual = c(1, 4, 4, 5))
 
+
+## Demonstration of the calculate.grades function with given assignment example
 # Read in the data
 load("example-grading.data.RData")
 
@@ -89,3 +103,4 @@ ggplot(grade_distribution, aes(x = "", y = percentage, fill = grade)) +
        fill = "Grade") +
   theme_minimal() +
   theme(axis.text.x = element_blank(), axis.ticks = element_blank())
+
